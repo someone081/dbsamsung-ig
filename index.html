@@ -9,6 +9,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&family=Inter:wght@400;600;800&display=swap">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Til tanlash menyusining yuqori panelda to'g'ri ochilishi va kesilib qolmasligi uchun */
+  .topbar { overflow: visible !important; z-index: 50; }
+  .tb { overflow: visible !important; position: relative; }
+  .langsel { position: relative; display: inline-block; }
+  .langsel .menu {
+    position: absolute; right: 0; top: 100%; margin-top: 6px;
+    background: var(--panel, #fff); border: 1px solid var(--line, #ddd);
+    border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: none; z-index: 9999; min-width: 120px; padding: 4px;
+  }
+  .langsel.open .menu { display: block !important; }
+  .langsel .menu button {
+    width: 100%; text-align: left; padding: 8px 12px;
+    background: none; border: none; cursor: pointer; border-radius: 4px; color: var(--fg, #000);
+  }
+  .langsel .menu button:hover { background: var(--hover, rgba(0,0,0,0.05)); }
+</style>
 <script>try{if(localStorage.getItem('db-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
 </head>
 <body>
@@ -21,7 +39,17 @@
   <span class="sp"></span>
   <a class="tb-phone" id="tb-phone" href="#" hidden></a>
   <span class="soc" id="tb-soc"></span>
-  <div class="langsel" id="langsel"><button id="lang-btn" aria-haspopup="true"><span id="lang-cur">O'zbek</span><svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M6 9l6 6 6-6"/></svg></button><div class="menu"><button data-lang="uz">O'zbek</button><button data-lang="en">English</button><button data-lang="ru">Русский</button></div></div>
+  <div class="langsel" id="langsel">
+    <button id="lang-btn" type="button" aria-haspopup="true" onclick="document.getElementById('langsel').classList.toggle('open')">
+      <span id="lang-cur">O'zbek</span>
+      <svg class="i" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="menu" id="lang-menu">
+      <button type="button" data-lang="uz">O'zbek</button>
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="ru">Русский</button>
+    </div>
+  </div>
 </div></div>
 
 <header id="hdr">
